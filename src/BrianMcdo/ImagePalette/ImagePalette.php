@@ -16,6 +16,7 @@ use BrianMcdo\ImagePalette\Exception\UnsupportedFileTypeException;
 use Exception;
 use Imagick;
 use IteratorAggregate;
+use Intervention\Image\Facades\Image;
 
 /**
  * Class ImagePalette
@@ -170,30 +171,23 @@ class ImagePalette implements IteratorAggregate
 	 */
     protected function setWorkingImageGD()
     {
-        $extension = pathinfo($this->file, PATHINFO_EXTENSION);
-
-        switch (strtolower($extension))
-        {
-            case "png":
-                $this->loadedImage = imagecreatefrompng($this->file);
-                break;
-
-            case "jpg":
-            case "jpeg":
-                $this->loadedImage = imagecreatefromjpeg($this->file);
-                break;
-
-            case "gif":
-                $this->loadedImage = imagecreatefromgif($this->file);
-                break;
-
-            case "bmp":
-                $this->loadedImage = imagecreatefrombmp($this->file);
-                break;
-
-            default:
-                throw new UnsupportedFileTypeException("The file type .$extension is not supported.");
-        }
+        $mime = Image::make($this->file)->mime();
+        switch($mime) {
+          case 'image/png':
+            $this->loadedImage = imagecreatefrompng($this->file);
+            break;
+          case 'image/gif':
+            $this->loadedImage = imagecreatefromgif($this->file);
+            break;
+          case 'image/jpeg':
+            $this->loadedImage = imagecreatefromjpeg($this->file);
+            break;
+          case 'image/bmp':
+            $this->loadedImage = imagecreatefrombmp($this->file);
+            break;
+          default:
+            throw new UnsupportedFileTypeException("The file type .$extension is not supported.");
+          }
     }
 
 	/**

@@ -1,9 +1,9 @@
 {
-    "name": "brianmcdo/image-palette",
+    "name": "rasim/image-palette",
     "type": "library",
     "description": "Extracts colors from an image and generates a color palette against a whitelist of colors.",
     "keywords": ["image","color","palette","extractor","gd","laravel"],
-    "homepage": "https://github.com/BrianMcdo/ImagePalette",
+    "homepage": "https://github.com/RaSiM/ImagePalette",
     "license": "MIT",
     "minimum-stability": "stable",
     "authors": [
@@ -16,6 +16,11 @@
         {
             "name": "Gandalf the Grey",
             "homepage": "https://github.com/gandalfx",
+            "role": "Developer"
+        },
+        {
+            "name": "Rasim ÖZDİNÇ",
+            "homepage": "https://github.com/RaSiM",
             "role": "Developer"
         }
     ],
